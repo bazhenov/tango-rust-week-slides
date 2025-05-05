@@ -12,6 +12,7 @@ class: text-center
 drawings:
   persist: false
 transition: slide-up
+mdc: true
 ---
 
 # Tango
@@ -28,8 +29,6 @@ Introduce myself. I'm intrested in benchmarking.
 Introduce a novel way of measuring performance.
 -->
 
----
-transition: slide-up
 ---
 
 # How do we measure performance?
@@ -72,39 +71,61 @@ th {
 </style>
 
 ---
+layout: center
+---
 
-# Solution
+# **Solution:** Control as much as you can
 
-## Control as much as you can <v-click>🫤</v-click>
+- disable SMT / DVFS / Power Saving
+- core / NUMA / IRQ pinning
+- randomize everything else: vmap/stack allocation
 
-- disable SMT/DVFS/Power Saving
-- core/NUMA/IRQ pinning
-- randomize everything else
+---
+layout: center
+---
 
-<v-after>
+# ...well, kind of 🫤
 
-## ✅ Run both algorithm you want to compare simultaneously
+<style>
+h1 {
+    font-size: 5rem
+}
+</style>
 
-By subtracting one measurement from the other, most common mode noise in the measurements will be automatically eliminated.
+---
+layout: center
+---
 
-</v-after>
+# ✅ Better solution
+
+## Run **2 algorithms** you want to compare _simultaneously_
+
+By calculating [candidate]{.candidate}-[baseline]{.baseline}, most common mode noise will be _automatically eliminated_.
 
 <style>
 h2 {
     padding: 2rem 0;
+}
+.baseline {
+    color: darkgreen;
+    font-weight: bold;
+}
+.candidate {
+    color: darkred;
+    font-weight: bold;
 }
 </style>
 
 ---
 layout: image
 image: /images/img1.svg
-backgroundSize: contain
+backgroundSize: 90% 90%
 ---
 
 ---
 layout: image
 image: /images/img2.svg
-backgroundSize: contain
+backgroundSize: 90% 90%
 ---
 
 ---
@@ -112,12 +133,18 @@ layout: statement
 ---
 
 # ⏱️
-# Performance short-term predictability
+# Performance is <v-mark>only</v-mark> <nobr>short-term</nobr> predictabile
 
 ---
 layout: image
 image: /images/vcs.svg
-backgroundSize: contain
+backgroundSize: 90% auto
+---
+
+---
+layout: image
+image: /images/scheme.svg
+backgroundSize: auto 90%
 ---
 
 ---
