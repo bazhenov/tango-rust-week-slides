@@ -60,13 +60,26 @@ Performance measurements are **not** independent **nor** they identically distri
 
 | System Level | Examples |
 | --- | --- |
-| Hardware | DVFS, Power Management, SMT, i/d cache invalidation, i/d alignment |
-| OS | paging, interrupt handling, NUMA allocation, task scheduling |
-| Runtime | JIT, GC, task scheduling |
+| Hardware | [DVFS]{.yellow}, [TDP]{.red}, [SMT]{.yellow}, [i/d cache invalidation]{.red} |
+| OS | [paging]{.yellow}, [interrupt handling]{.yellow}, [NUMA allocation]{.yellow}, [task scheduling]{.yellow} |
+| Runtime | [JIT]{.yellow}, [GC]{.yellow}, [task scheduling]{.green} |
+| Compiler | [i/d alignment]{.green}, [inlining]{.green}, [vectorization]{.green}, [instruction scheduling]{.yellow}, [monomorphoization]{.green} |
 
 <style>
 th {
     font-weight: bold;
+}
+
+.red {
+    color: red
+}
+
+.yellow {
+    color: orange
+}
+
+.green {
+    color: green
 }
 </style>
 
@@ -74,11 +87,11 @@ th {
 layout: center
 ---
 
-# **Solution:** Control as much as you can
+# **Solution**: Control as much as you can
 
-- disable SMT / DVFS / Power Saving
-- core / NUMA / IRQ pinning
-- randomize everything else: vmap/stack allocation
+- **disable**: SMT, DVFS, Power Saving, ...
+- **pin**: core, NUMA, IRQ, ...
+- **randomize everything else**: vmap/stack allocation, ...
 
 ---
 layout: center
@@ -98,9 +111,9 @@ layout: center
 
 # ✅ Better solution
 
-## Run **2 algorithms** you want to compare _simultaneously_
+## Run **2 algorithms** you want to compare _simultaneously_.
 
-By calculating [candidate]{.candidate}-[baseline]{.baseline}, most common mode noise will be _automatically eliminated_.
+By calculating [candidate]{.candidate}-[baseline]{.baseline}, most of the common mode noise will be _automatically eliminated_.
 
 <style>
 h2 {
@@ -141,11 +154,25 @@ image: /images/vcs.svg
 backgroundSize: 90% auto
 ---
 
+<!--
+There is a hidden dynamic library behind every executable
+-->
+
 ---
 layout: image
 image: /images/scheme.svg
 backgroundSize: auto 90%
 ---
+
+---
+layout: center
+---
+
+# Conclusion
+
+- computers were never designed to reproduce performance
+- performance measurements are not i.i.d.
+- compare apples to apples
 
 ---
 layout: two-cols-header
@@ -164,7 +191,7 @@ layout: two-cols-header
 ## Denis Bazhenov
 
 - <nobr><mdi-github /> <a href="https://github.com/bazhenov/tango">https://github.com/bazhenov/tango</a></nobr>
-- <nobr><mdi-web /> <a href="https://bazhenov.me/posts">https://bazhenov.me/posts</a></nobr>
+- <nobr><mdi-web /> <a href="https://bazhenov.me/">https://bazhenov.me/</a></nobr>
 
 <style>
     img {
