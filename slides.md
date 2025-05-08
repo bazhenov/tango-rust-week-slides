@@ -11,7 +11,8 @@ info: |
 class: text-center
 drawings:
   persist: false
-transition: slide-up
+transition: slide-left
+layout: intro
 mdc: true
 ---
 
@@ -30,10 +31,12 @@ Introduce a novel way of measuring performance.
 -->
 
 ---
+layout: full
+---
 
 # How do we measure performance?
 
-```rust {3-5|2,6}
+```rust {3-5|2,6}{at:2}
 fn measure(f: impl Fn()) -> u64 {
     let start = Timer::now();
     for _ in 0..iterations {
@@ -45,7 +48,7 @@ fn measure(f: impl Fn()) -> u64 {
 
 <style>
 code {
-  font-size: 200%;
+    font-size: 200%;
 }
 </style>
 
