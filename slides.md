@@ -18,18 +18,6 @@ aspectRatio: 16/9
 
 Precise Performance Measurement<br/> through Paired Benchmarking
 
-<!--
-Thank people.
-
-Thank organizers.
-
-Introduce myself. I'm intrested in benchmarking.
-
-
-
-Introduce a novel way of measuring performance.
--->
-
 <style>
 .slidev-layout {
     background: url("/images/bg.jpg");
@@ -47,13 +35,21 @@ Introduce a novel way of measuring performance.
 }
 </style>
 
+<!--
+Thank people & organizers.
+
+I'm intrested in benchmarking. Rust great.
+
+Introduce a novel way of measuring performance – PB and TANGO
+-->
+
 ---
 layout: full
 ---
 
 # How do we measure performance?
 
-```rust {3-5|2,6}{at:2}
+```rust {3-5|2,6}
 fn measure(f: impl Fn()) -> u64 {
     let start = Timer::now();
     for _ in 0..iterations {
@@ -70,6 +66,11 @@ code {
 </style>
 
 <!--
+repeat algorithm in a loop, measure total time.
+
+repeat process to build CI.
+
+Fundamental problem with this code – to assume PERF is the same.
 -->
 
 ---
@@ -104,6 +105,12 @@ th {
 }
 </style>
 
+
+<!--
+A lot of factors spanning several system levels.
+
+Not anything under control. And also CLOUD.
+-->
 ---
 layout: center
 ---
@@ -113,6 +120,17 @@ layout: center
 - **disable**: SMT, DVFS, Power Saving, ...
 - **pin**: core, NUMA, IRQ, ...
 - **randomize everything else**: vmap/stack allocation, ...
+- **running benchmarks for longer**: may actually get things worse.
+
+<!--
+Control as much as you can, randomize anything else to create fair env.
+
+Running benchmarks for longer?
+
+It generally works, but it's not easy.
+
+It's harder now that it was before.
+-->
 
 ---
 layout: center
@@ -150,11 +168,25 @@ h2 {
 }
 </style>
 
+<!--
+Never benchmark a single algorithm in isolation.
+
+It's almost impossible to control environment tightly enough.
+-->
+
 ---
 layout: image
 image: /images/img1.svg
 backgroundSize: 90% 90%
 ---
+
+<!--
+same algorithm, same OS, same hardware.
+
+The don't look alike, do they?
+
+Computers were designed to reproduce the results of computations, not a performance.
+-->
 
 ---
 layout: image
@@ -167,7 +199,13 @@ layout: statement
 ---
 
 # ⏱️
-# Performance is <v-mark>only</v-mark> <nobr>short-term</nobr> predictabile
+# Performance is only <nobr>short-term</nobr> predictabile
+
+<!--
+Like a weather.
+
+Leverage. Tango is designed to do that!
+-->
 
 ---
 layout: image
@@ -176,7 +214,11 @@ backgroundSize: 90% auto
 ---
 
 <!--
-There is a hidden dynamic library behind every executable
+2 binaries may be at a different times
+
+Each binary contains benchmarks as well as runner. And the runner can load both executables in the same process memory.
+
+There is a hidden dynamic library behind every executable.
 -->
 
 ---
@@ -194,6 +236,14 @@ layout: center
 - computers were never designed to reproduce performance
 - performance measurements are not i.i.d.
 - compare apples to apples
+
+<!--
+it's almost impossible to separate algorithm performance from state of hardware and OS
+
+benchmarks themselves might be the reason
+
+benchmarking is easier when you compare apples to apples. You compare the same code in the same environment at the same time. One of the ways to do so is to compare 2 algorithms at the same time in the same environment. This way your benchmarks will be more stable and less susceptible to abrupt changes in performance without any meaningful changes to the code.
+-->
 
 ---
 layout: two-cols-header
@@ -231,3 +281,9 @@ layout: two-cols-header
     }
 
 </style>
+
+<!--
+Hope you will give it a try, and if you can please give some Feedback.
+
+If you have any questions please find me in hall, I will be glad to have a chat.
+-->
