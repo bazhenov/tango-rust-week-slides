@@ -1,8 +1,5 @@
 ---
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
 title: Tango – Rust Week 2025
 info: |
@@ -11,14 +8,15 @@ info: |
 class: text-center
 drawings:
   persist: false
-transition: slide-left
+transition: fade
 layout: intro
 mdc: true
+aspectRatio: 16/9
 ---
 
 # Tango
 
-Precise Performance Measurement through Direct Comparison
+Precise Performance Measurement<br/> through Paired Benchmarking
 
 <!--
 Thank people.
@@ -27,8 +25,27 @@ Thank organizers.
 
 Introduce myself. I'm intrested in benchmarking.
 
+
+
 Introduce a novel way of measuring performance.
 -->
+
+<style>
+.slidev-layout {
+    background: url("/images/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+
+    h1 {
+        color: white
+    }
+
+    p {
+        color: white;
+    }
+}
+</style>
 
 ---
 layout: full
@@ -40,7 +57,7 @@ layout: full
 fn measure(f: impl Fn()) -> u64 {
     let start = Timer::now();
     for _ in 0..iterations {
-        black_box(f());
+        algorithm_of_intrest();
     }
     Timer::now() - start
 }
@@ -61,12 +78,13 @@ code {
 
 Performance measurements are **not** independent **nor** they identically distributed.
 
+Some factors you [can control]{.green}, others only [under specific conditions]{.yellow}, others are [impossible]{.red} to control.
+
 | System Level | Examples |
 | --- | --- |
 | Hardware | [DVFS]{.yellow}, [TDP]{.red}, [SMT]{.yellow}, [i/d cache invalidation]{.red} |
-| OS | [paging]{.yellow}, [interrupt handling]{.yellow}, [NUMA allocation]{.yellow}, [task scheduling]{.yellow} |
-| Runtime | [JIT]{.yellow}, [GC]{.yellow}, [task scheduling]{.green} |
-| Compiler | [i/d alignment]{.green}, [inlining]{.green}, [vectorization]{.green}, [instruction scheduling]{.yellow}, [monomorphoization]{.green} |
+| OS | [paging]{.green}, [interrupt handling]{.yellow}, [NUMA allocation]{.yellow}, [task scheduling]{.yellow}, [ASLR]{.yellow}, [noisy neighbors]{.yellow} |
+| Runtime | [Allocator state]{.green}, [task scheduling]{.green} |
 
 <style>
 th {
@@ -100,7 +118,7 @@ layout: center
 layout: center
 ---
 
-# ...well, kind of 🫤
+# Can we do better?
 
 <style>
 h1 {
