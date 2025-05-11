@@ -36,11 +36,19 @@ Precise Performance Measurement<br/> through Paired Benchmarking
 </style>
 
 <!--
-Thank people & organizers.
+Hello everyone! It's great to be here with you all.
 
-I'm intrested in benchmarking. Rust great.
+I want to thank the organizers for this chance to have this talk today.
 
-Introduce a novel way of measuring performance – PB and TANGO
+I'm a huge fan of low-level programming, hardware, and efficient software. And Rust is an excellent choice for all of those things.
+
+Benchmarking, a challenging aspect of performance engineering, remains a topic of interest.
+
+Today, I'll introduce a novel approach to measuring algorithm performance: paired benchmarking/direct comparison.
+
+Additionally, I'll present Tango, a Rust benchmark harness I developed to enhance benchmark stability.
+
+Let's start with the basics. How do we measure performance?
 -->
 
 ---
@@ -53,7 +61,7 @@ layout: full
 fn measure(f: impl Fn()) -> u64 {
     let start = Timer::now();
     for _ in 0..iterations {
-        algorithm_of_intrest();
+        algorithm_of_interest();
     }
     Timer::now() - start
 }
@@ -70,7 +78,9 @@ repeat algorithm in a loop, measure total time.
 
 repeat process to build CI.
 
-Fundamental problem with this code – to assume PERF is the same.
+The fundamental issue with this approach is assuming that an algorithm's performance remains the same when run multiple times. After all, it's the same algorithm, OS, and hardware, right? Not quite.
+
+Generic computers (servers, laptops) were designed to reproduce computations, not performance.
 -->
 
 ---
@@ -111,6 +121,19 @@ A lot of factors spanning several system levels.
 
 Not anything under control. And also CLOUD.
 -->
+
+---
+layout: center
+---
+
+![](/images/drop.jpeg)
+
+<!--
+It's hard to reason about such benchmarks. Hard to communicate with team members.
+
+How do we tackle this issue today.
+-->
+
 ---
 layout: center
 ---
@@ -233,9 +256,9 @@ layout: center
 
 # Conclusion
 
-- computers were never designed to reproduce performance
-- performance measurements are not i.i.d.
-- compare apples to apples
+- Computers were never designed to reproduce performance
+- Performance measurements are not i.i.d.
+- Compare apples to apples
 
 <!--
 it's almost impossible to separate algorithm performance from state of hardware and OS
