@@ -206,7 +206,7 @@ backgroundSize: 90% 90%
 <!--
 same algorithm, same OS, same hardware.
 
-The don't look alike, do they?
+They don't look alike, do they?
 
 Computers were designed to reproduce the results of computations, not a performance.
 -->
@@ -216,6 +216,12 @@ layout: image
 image: /images/img2.svg
 backgroundSize: 90% 90%
 ---
+
+<!--
+But if you will run the same algorithm twice at the same time and plot it against itself, you will see that although performance is not stable, it's quite predictable in a short timeframe.
+
+And, this is also, in my opinion, a very important observation: even when the difference is not zero, it's symmetrical. It means that this difference has more to do with the properties of the system (hardware/OS) than the algorithm itself. This observation allows us to reason about outliers more rigorously.
+-->
 
 ---
 layout: statement
@@ -244,28 +250,28 @@ Each binary contains benchmarks as well as runner. And the runner can load both 
 There is a hidden dynamic library behind every executable.
 -->
 
----
-layout: image
-image: /images/scheme.svg
-backgroundSize: auto 90%
----
+<!--
 
----
-layout: center
----
+   ---
+   layout: image
+   image: /images/scheme.svg
+   backgroundSize: auto 90%
+   ---
 
-# Conclusion
+   ---
+   layout: center
+   ---
 
-- Computers were never designed to reproduce performance
-- Performance measurements are not i.i.d.
-- Compare apples to apples
+-->
+
+# Benefits
+
+- Provide more stable results
+- Require less time
+- Even in more noisy environments
 
 <!--
-it's almost impossible to separate algorithm performance from state of hardware and OS
-
-benchmarks themselves might be the reason
-
-benchmarking is easier when you compare apples to apples. You compare the same code in the same environment at the same time. One of the ways to do so is to compare 2 algorithms at the same time in the same environment. This way your benchmarks will be more stable and less susceptible to abrupt changes in performance without any meaningful changes to the code.
+To sum up: benchmarking in isolation is noisy and unreliable. But by comparing two versions side-by-side, we can minimize noise and focus on what really matters—an algorithm. That’s what Tango helps you do.
 -->
 
 ---
@@ -306,7 +312,7 @@ layout: two-cols-header
 </style>
 
 <!--
-Hope you will give it a try, and if you can please give some Feedback.
+I invite you to try it out, see how it fits into your workflow, and share your feedback.
 
-If you have any questions please find me in hall, I will be glad to have a chat.
+Thank you, and happy benchmarking!
 -->
